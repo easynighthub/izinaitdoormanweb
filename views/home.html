@@ -1,0 +1,28 @@
+<div class="scrollable" ng-controller="MainController">
+  <div class="scrollable-content">
+
+    <div ng-show="isLoaded" class="splash-content">
+      <img src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"alt="">
+    </div>
+
+    <div class="list-group text-center">
+
+      <div class="list-group-item list-group-item-home event-list" ng-repeat="event in events" ng-click="goToEventDetails(event)">
+        <div class="image-container">
+          <img src="{{event.image}}">
+        </div>
+        <div class="event-info">
+          <div class="left">
+            <p class="name">{{event.name}}</p>
+            <p class="date">{{event.date | date : 'medium'}}</p>
+          </div>
+          <div class="right">
+            <p class="from">{{event.fromHour | date : 'shortTime'}}</p>
+            <p class="to">{{event.toHour | date : 'shortTime'}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

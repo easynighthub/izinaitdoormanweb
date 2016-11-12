@@ -1,0 +1,105 @@
+.left-menu-header {
+	background-color: #1BE4F4;
+}
+.left-menu-header img {
+	width: 60px;
+	margin: 15px;
+}
+.left-menu-header p {
+	margin: 0 0 0 15px;
+}
+
+.scrollable-content {
+	background-color: #fff;
+}
+
+.event-list .image-container {
+	width: 200px;
+    text-align: center;
+    display: inline-block;
+}
+.event-info {
+	display: flex;
+}
+.event-info p {
+	margin: 0;
+}
+.event-info .left{
+	width: 60%;
+    text-align: left;
+}
+.event-info .right{
+	width: 40%;
+    text-align: right;
+}
+
+.event-details .row {
+	display: flex;
+}
+.event-details .row .col-md-6{
+	width: 50%;
+}
+.event-details .divider{
+    border-bottom: 1px solid gray;
+    padding-top: 5px;
+}
+.event-details .row.vestimenta {
+	text-align: center;
+}
+.event-details .row .col-md-12 {
+	width: 100%;
+}
+.event-details a.validate-button {
+	margin: auto;
+    width: 80%;
+}
+.has-navbar-top .app-body {
+	padding: 0;
+}
+.navbar {
+	margin: 0;
+}
+.user-detail .scrollable {
+	text-align: center;
+}
+.user-detail .image-container {
+	height: 120px;
+}
+.user-detail .image-container img{
+	border-radius: 70px;
+}
+.user-detail .row-buttons {
+	display: flex;
+}
+.user-detail .row-buttons .col-sm-6{
+	width: 50%;
+	text-align: center;
+}
+.splash-content {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    margin: auto;
+    z-index: 9999;
+    background-color: #fff;
+    display: flex;
+}
+.splash-content img{
+    height: 100%;
+}
+.list-group {
+	margin-bottom: 52px;
+}
+.scrollable {
+	padding-bottom: 52px;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<div  ng-controller="EventDetailController">
+  <div ui-content-for="title">
+    <span>Detalles del evento</span>
+  </div>
+
+  <div class="scrollable">
+    <div class="scrollable-content section">
+      <div class="container">
+        <div class="row">
+          <div class="event-details">
+            <div class="image-container">
+              <img src="{{event.image}}">
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="title">Desde:</p>
+                <p class="value"><b>{{event.fromHour | date : 'shortTime'}}</b></p>
+              </div>
+              <div class="col-md-6">
+                <p class="title">Hasta:</p>
+                <p class="value"><b>{{event.toHour | date : 'shortTime'}}</b></p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="title">Politicas de puerta</p>
+                <p class="value"><b>{{event.policiesDoor}}</b></p>
+              </div>
+              <div class="col-md-6">
+                <p class="title">Edades admitidas</p>
+                <p class="value"><b>{{event.ageRange}}</b></p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="title">Hora de entrada freemiun</p>
+                <p class="value"><b>{{event.freemiunHour | date : 'shortTime'}}</b></p>
+              </div>
+              <div class="col-md-6">
+                <p class="title">Hora de entrada freemiun</p>
+                <p class="value"><b>{{event.freemiunHour | date : 'shortTime'}}</b></p>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row vestimenta">
+              <div class="col-md-12">
+                <p class="title">Vestimenta</p>
+                <p class="value"><b>{{event.clothing}}</b></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <a ng-disabled="isOntime" href="zxing://scan/?ret=http://10.0.0.14:8080/reciveCode.html?code={CODE}" class="btn btn-default validate-button">Validar</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

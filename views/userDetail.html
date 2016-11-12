@@ -1,0 +1,26 @@
+<div  ng-controller="UserDetailController" class="user-detail">
+  <div ui-content-for="title">
+    <span>Informacion del usuario</span>
+  </div>
+
+  <div class="scrollable">
+    <div class="scrollable-content section">
+      <div class="container">
+        <div class="image-container">
+            <img src="{{user.picture}}"alt="">
+        </div>
+        <div>
+          <p class="name">{{user.displayName}}</p>
+        </div>
+        <div class="row row-buttons">
+          <div class="col-sm-6">
+            <button class="btn btn-default">Aceptar</button>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-default">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
