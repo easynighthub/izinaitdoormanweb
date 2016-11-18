@@ -36,12 +36,12 @@
             <div class="divider"></div>
             <div class="row">
               <div class="col-md-6">
-                <p class="title">Hora de entrada freemiun</p>
-                <p class="value"><b>{{event.freemiunHour | date : 'shortTime'}}</b></p>
+                <p class="title">Gratis hasta las:</p>
+                <p class="value"><b>{{event.freemiumHour | date : 'shortTime'}}</b></p>
               </div>
               <div class="col-md-6">
-                <p class="title">Hora de entrada freemiun</p>
-                <p class="value"><b>{{event.freemiunHour | date : 'shortTime'}}</b></p>
+                <p class="title">Descuento después de la hora gratis:</p>
+                <p class="value"><b>{{event.descOutHour}}%</b></p>
               </div>
             </div>
             <div class="divider"></div>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="row">
-              <a ng-disabled="isOntime" href="zxing://scan/?ret=http://10.0.0.14:8080/reciveCode.html?code={CODE}" class="btn btn-default validate-button">Validar</a>
+              <button ng-show="!isOntime" ng-click="openScanner()" class="btn btn-default validate-button">Validar</button>
             </div>
 
           </div>

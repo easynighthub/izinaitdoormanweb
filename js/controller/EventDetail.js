@@ -1,7 +1,14 @@
 
-app.controller('EventDetailController', function($rootScope, $scope) {
+app.controller('EventDetailController', function($rootScope, $scope, $firebaseObject) {
 
 	$scope.isOntime = true;
+	$scope.url = 'zxing://scan/?ret=http://'+ location.host +'/reciveCode.html?code={CODE}';
+
+	$('.btn-group.pull-left.back').removeClass('hidden');
+	$('.btn-group.pull-left.menu').addClass('hidden');
+	$('.btn-group.pull-left.back').click(function(){
+		location.href = '#/home';
+	});
 
 	var validateUser = function() {
 		if ($rootScope.doorman)
@@ -30,11 +37,23 @@ app.controller('EventDetailController', function($rootScope, $scope) {
 			return false;
 	}
 
-	if (!$rootScope.selectedEvent) {
-		location.href = "#/home";
-	} else {
+	if ($rootScope.selectedEvent) {
 		$scope.event = $rootScope.selectedEvent;
+		localStorage.setItem("selectedEventId", $scope.event.id);
 		$scope.isOntime = !isOntime();
+	}else if ($rootScope.selectedEventId) {
+		var newEvent = firebase.database().ref('/events/' + $rootScope.selectedEventId);
+		newEvent = $firebaseObject(newEvent);
+		newEvent.$loaded().then(function(){
+			$scope.event = newEvent;
+			$scope.isOntime = !isOntime();
+		});
+	}else {
+		location.href = "#/home";
 	}
+
+	$scope.openScanner = function() {
+		location.href = $scope.url;
+	};
 
 });

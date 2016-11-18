@@ -14,7 +14,7 @@
 }
 
 .event-list .image-container {
-	width: 200px;
+	width: 120px;
     text-align: center;
     display: inline-block;
 }
@@ -49,7 +49,7 @@
 .event-details .row .col-md-12 {
 	width: 100%;
 }
-.event-details a.validate-button {
+.event-details .validate-button {
 	margin: auto;
     width: 80%;
 }
@@ -63,10 +63,11 @@
 	text-align: center;
 }
 .user-detail .image-container {
-	height: 120px;
+	height: 150px;
 }
 .user-detail .image-container img{
 	border-radius: 70px;
+	height: 100%;
 }
 .user-detail .row-buttons {
 	display: flex;
@@ -90,13 +91,36 @@
 .splash-content img{
     height: 100%;
 }
+.validating {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    margin: auto;
+    z-index: 9999;
+    background-color: #fff;
+    display: block;
+}
+.validating img{
+    height: 100%;
+}
 .list-group {
 	margin-bottom: 52px;
 }
 .scrollable {
 	padding-bottom: 52px;
 }
-
+.row.validated p {
+    width: 80%;
+    margin: auto;
+    color: #fff;
+    padding: 20px;
+    background-color: green;
+    font-weight: bold;    
+    margin-bottom: 20px;
+}
 
 
 

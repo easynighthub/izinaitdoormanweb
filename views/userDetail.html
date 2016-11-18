@@ -6,15 +6,30 @@
   <div class="scrollable">
     <div class="scrollable-content section">
       <div class="container">
+
+        <div class="splash-content">
+          <img src="img/loading.gif"alt="">
+        </div>
+
+        <div class="validating hidden">
+          <img src="img/validating.gif">
+          <p>Validatong...</p>
+        </div>
+
         <div class="image-container">
             <img src="{{user.picture}}"alt="">
         </div>
         <div>
           <p class="name">{{user.displayName}}</p>
+          <p>{{enterPrice}}</p>
+        </div>
+        <div class="row validated hidden">
+          <p>Validado! <i class="fa fa-check" aria-hidden="true"></i></p>
+          <button ng-click="openScnanernext()" class="btn btn-default">Validar siguiente</button>
         </div>
         <div class="row row-buttons">
           <div class="col-sm-6">
-            <button class="btn btn-default">Aceptar</button>
+            <button class="btn btn-default" ng-click="acceptUser()">Aceptar</button>
           </div>
           <div class="col-sm-6">
             <button class="btn btn-default">Cancelar</button>

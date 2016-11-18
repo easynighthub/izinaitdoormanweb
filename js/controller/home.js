@@ -5,6 +5,9 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 	$scope.events = [];
 	var eventIndex = 0;
 
+	$('.btn-group.pull-left.back').addClass('hidden');
+	$('.btn-group.pull-left.menu').removeClass('hidden');
+
 	var validateUser = function() {
 		if ($rootScope.doorman)
 			return true;
@@ -31,8 +34,12 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 		var newEvent = firebase.database().ref('/events/' + $scope.eventsId[index]);
 		newEvent = $firebaseObject(newEvent);
 		newEvent.$loaded().then(function(){
-			$scope.events.push(newEvent);
-			console.log($scope.events);
+			var date = new Date();
+			if (newEvent.toHour > date) {
+				$scope.events.push(newEvent);
+				console.log(' no passed: ', $scope.events);
+			}
+			console.log('passed: ', $scope.events);
 			eventIndex++;
 			if ($scope.eventsId.length > eventIndex){
 				getEvents(eventIndex);
@@ -44,6 +51,8 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 	var doormanData = $firebaseObject(ref);
 	doormanData.$loaded().then(function(){
 		console.log(doormanData)
+		$('.left-menu-header .name').text(doormanData.name);
+		$('.left-menu-header .email').text(doormanData.email);
 		$rootScope.doormanData = doormanData;
 		$scope.eventsId = Object.keys(doormanData.events);
 		getEvents(eventIndex);
