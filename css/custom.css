@@ -1,3 +1,31 @@
+
+.thumbnail .event-img h3.event-name {
+    position: absolute;
+    bottom: -20px;
+    right: 5px;
+    font-size: 10pt;
+    color: #fff;
+    display:block;
+
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.5);
+}
+.event-date {
+    position: absolute;
+
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 2px;
+    box-shadow: 0 0 5px rgba(254, 0, 114, 1);
+    text-shadow: 0 10px 0 rgba(254, 0, 114, 0);
+    background-color: rgba(254, 0, 114, 1);
+    color: #fff;
+}
+
 .left-menu-header {
 	background-color: #1BE4F4;
 }
@@ -14,7 +42,6 @@
 }
 
 .event-list .image-container {
-	width: 120px;
     text-align: center;
     display: inline-block;
 }

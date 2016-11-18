@@ -22,8 +22,12 @@
     <link rel="icon" href="img/logopng.png" type="image/x-icon"/>
     <link rel="shortcut icon" href="img/logopng.png" type="image/x-icon"/>
 
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Lobster|Slabo+27px|Shrikhand|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.purple-pink.min.css" />
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 
 
@@ -56,8 +60,7 @@
     <script src="js/controller/userDetail.js"></script>
 
   </head>
-  <body
-    ng-app="myApp" ui-prevent-touchmove-defaults>
+  <body ng-app="myApp" ui-prevent-touchmove-defaults>
 
     <!-- Sidebars -->
     <div ng-include="'shared/sidebar.html'"
@@ -86,7 +89,7 @@
         <div ng-show="loading" class="app-content-loading">
           <i class="fa fa-spinner fa-spin loading-spinner"></i>
         </div>
-        <div class="app-content">
+        <div class=" app-content">
           <ng-view></ng-view>
         </div>
       </div>
