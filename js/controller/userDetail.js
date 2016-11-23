@@ -1,7 +1,8 @@
 app.controller('UserDetailController', function($rootScope, $scope, $route, $firebaseObject) {
-	console.log($route.current.params);
+	
 	var userId = $route.current.params.code;
 	var selectedEvent = null;
+	var month = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','obtubre','noviembre','diciembre'];
 
 	$('.btn-group.pull-left.back').addClass('hidden');
 	$('.btn-group.pull-left.menu').removeClass('hidden');
@@ -34,13 +35,10 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 	}
 
 	var isValidated = function(events) {
-		console.log(events);
 		if (!events)
 			return false;
 
 		var visitedEvents = Object.keys(events);
-		console.log(visitedEvents);
-		console.log(selectedEvent.id);
 		if (visitedEvents.indexOf(selectedEvent.id) >= 0) {
 			$('.row.validated').removeClass('hidden');
 			$('.row.row-buttons').addClass('hidden');
@@ -57,7 +55,6 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 			$rootScope.selectedEventId = localStorage.getItem('selectedEventId');
 			location.href = "#/event-detail";
 		}
-		console.log(user);
 		selectedEvent = firebase.database().ref('/events/' + localStorage.getItem('selectedEventId'));
 		selectedEvent = $firebaseObject(selectedEvent);
 		selectedEvent.$loaded().then(function(){
@@ -82,36 +79,51 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 
 	$scope.acceptUser = function() {
 		$('.user-detail .validating').removeClass('hidden');
+		var isDescActive = ($scope.selectedEvent.freemiumHour > new Date().getTime());
 		var userData = {
 			displayName: user.displayName,
 			email: user.email,
 			gender: user.gender || '',
 			dateAttendance: new Date().getTime(),
 			birthday: user.birthday || '',
-			descActive: ($scope.selectedEvent.freemiumHour > new Date().getTime()),
+			descActive: isDescActive,
 			isFirstTime: checkIsfirstTime()
 		};
-		console.log(userData);
 		var historyRef = 'history/'+ selectedEvent.id + '/' + $rootScope.doorman.uid + '/' + userId;
-		console.log(historyRef);
 		firebase.database().ref(historyRef).set(userData).then(
         function(s){
-          	console.log('history guardado bien ', s);
           	var userRef = 'users/' + userId + '/asistProd/'+ $rootScope.doorman.uid + '/' + selectedEvent.id;
           	firebase.database().ref(userRef).set(new Date().getTime()).then(
   				function(s) {
-  					console.log('event in user guardado bien ' + s);
 					var adminRef = 'admins/' + selectedEvent.admin + '/clients/' + userId;
 					firebase.database().ref(adminRef).set(true).then(
   						function(s) {
-		  					console.log('clients saved in user guardado bien ');
 							var userHistoryRef = 'users/' + userId + '/history/' + selectedEvent.id;
 							firebase.database().ref(userHistoryRef).set(true).then(
   								function(s) {
-		  							console.log('history saved in user guardado bien ');
-									$('.row.validated').removeClass('hidden');
-									$('.row.row-buttons').addClass('hidden');
-									$('.user-detail .validating').addClass('hidden');
+  									var date = new Date();
+  									var facturaId = month[date.getMonth()] + date.getUTCFullYear();
+  									var ref = firebase.database().ref('admins/' + selectedEvent.admin +'/facturas/'+facturaId);
+  									var facturaRequest = $firebaseObject(ref);
+  									facturaRequest.$loaded().then(function(){
+  										console.log(facturaRequest);
+  										var update = {
+  											pay: false,
+  											usersDesc: facturaRequest.usersDesc ? (isDescActive ? facturaRequest.usersDesc + 1 : facturaRequest.usersDesc) : 1,
+  											usersFree: facturaRequest.usersFree ? (!isDescActive ? facturaRequest.usersFree + 1 : facturaRequest.usersFree) : 1
+  										};
+  										firebase.database().ref('admins/' + selectedEvent.admin + '/facturas/' + facturaId).set(update).then(
+  											function(s){
+												$('.row.validated').removeClass('hidden');
+												$('.row.row-buttons').addClass('hidden');
+												$('.user-detail .validating').addClass('hidden');
+
+  											},function(e){
+												alert('Error, intente de nuevo');
+								        		console.log('se guardo mal ', e);
+  											}
+										);
+  									});
   								}, function(e) {
 									alert('Error, intente de nuevo');
 					        		console.log('se guardo mal ', e);

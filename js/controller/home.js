@@ -54,8 +54,10 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 		$('.left-menu-header .name').text(doormanData.name);
 		$('.left-menu-header .email').text(doormanData.email);
 		$rootScope.doormanData = doormanData;
-		$scope.eventsId = Object.keys(doormanData.events);
-		getEvents(eventIndex);
+		if(doormanData.events) {
+			$scope.eventsId = Object.keys(doormanData.events);
+			getEvents(eventIndex);
+		}
 	});
 
 	$scope.goToEventDetails = function(event) {
