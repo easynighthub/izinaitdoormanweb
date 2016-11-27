@@ -58,10 +58,8 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 		selectedEvent = firebase.database().ref('/events/' + localStorage.getItem('selectedEventId'));
 		selectedEvent = $firebaseObject(selectedEvent);
 		selectedEvent.$loaded().then(function(){
-			console.log(selectedEvent);
 			$scope.selectedEvent = selectedEvent;
 			$scope.user = user;
-			console.log(selectedEvent.freemiumHour , new Date().getTime() );
 			$scope.enterPrice = selectedEvent.freemiumHour > new Date().getTime() ?
 			'Entrada en horario gratis.' : 'Porcentaje de descuento: ' + selectedEvent.descOutHour + '%'; 
 			if (user.asistProd)
