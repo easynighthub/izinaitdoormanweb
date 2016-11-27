@@ -86,7 +86,7 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 			gender: user.gender || '',
 			dateAttendance: new Date().getTime(),
 			birthday: user.birthday || '',
-			descActive: isDescActive,
+			descActive: !isDescActive,
 			isFirstTime: checkIsfirstTime()
 		};
 		var historyRef = 'history/'+ selectedEvent.id + '/' + $rootScope.doorman.uid + '/' + userId;
@@ -106,7 +106,6 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
   									var ref = firebase.database().ref('admins/' + selectedEvent.admin +'/facturas/'+facturaId);
   									var facturaRequest = $firebaseObject(ref);
   									facturaRequest.$loaded().then(function(){
-  										console.log(facturaRequest);
   										var update = {
   											pay: false,
   											usersDesc: facturaRequest.usersDesc ? (isDescActive ? facturaRequest.usersDesc + 1 : facturaRequest.usersDesc) : 1,

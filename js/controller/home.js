@@ -30,16 +30,13 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 	}
 
 	var getEvents = function(index){
-		console.log($scope.events.length, index)
 		var newEvent = firebase.database().ref('/events/' + $scope.eventsId[index]);
 		newEvent = $firebaseObject(newEvent);
 		newEvent.$loaded().then(function(){
 			var date = new Date();
 			if (newEvent.toHour > date) {
 				$scope.events.push(newEvent);
-				console.log(' no passed: ', $scope.events);
 			}
-			console.log('passed: ', $scope.events);
 			eventIndex++;
 			if ($scope.eventsId.length > eventIndex){
 				getEvents(eventIndex);
@@ -50,7 +47,6 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 	var ref = firebase.database().ref('/doormans/').child($rootScope.doorman.uid);
 	var doormanData = $firebaseObject(ref);
 	doormanData.$loaded().then(function(){
-		console.log(doormanData)
 		$('.left-menu-header .name').text(doormanData.name);
 		$('.left-menu-header .email').text(doormanData.email);
 		$rootScope.doormanData = doormanData;
@@ -61,7 +57,6 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 	});
 
 	$scope.goToEventDetails = function(event) {
-		console.log(event);
 		$rootScope.selectedEvent = event;
 		location.href = "#/event-detail";
 	}

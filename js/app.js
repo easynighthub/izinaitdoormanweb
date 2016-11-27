@@ -20,7 +20,6 @@ window.logout = function() {
 	firebase.auth().signOut().then(function() {
 		localStorage.clear();
 		window.location.href = '#/login';
-		console.log('Signed Out');
 	}, function(error) {
 	    console.error('Sign Out Error', error);
 	});

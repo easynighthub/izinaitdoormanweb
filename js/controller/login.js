@@ -24,7 +24,6 @@ app.controller('LoginController', function($rootScope, $scope, $route, $routePar
 	$scope.login = function() {
 		firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password).then(
 			function(s){
-				console.log(s);
 				$rootScope.doorman = s;
 				$('.btn-group.pull-left').removeClass('hidden');
 				window.location.href = '#/home';
