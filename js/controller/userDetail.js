@@ -3,6 +3,7 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 	var userId = $route.current.params.code;
 	var selectedEvent = null;
 	var month = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','obtubre','noviembre','diciembre'];
+	var selectedEventId = localStorage.getItem('selectedEventId');
 
 	$('.btn-group.pull-left.back').addClass('hidden');
 	$('.btn-group.pull-left.menu').removeClass('hidden');
@@ -34,6 +35,11 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 		location.href = "#/home";
 	}
 
+	if(!selectedEventId){
+		alert('No se selecciono ningun evento');
+		location.href = "#/home";
+	}
+
 	var isValidated = function(events) {
 		if (!events)
 			return false;
@@ -47,15 +53,13 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 			return false;
 	};
 
-	var user = firebase.database().ref('/users/' + userId);
-	user = $firebaseObject(user);
+	var user = $firebaseObject(firebase.database().ref('/users/' + userId));
 	user.$loaded().then(function(){
 		if (!user.email){
 			alert('Usuario no existe en la base de datos');
-			$rootScope.selectedEventId = localStorage.getItem('selectedEventId');
 			location.href = "#/event-detail";
 		}
-		selectedEvent = firebase.database().ref('/events/' + localStorage.getItem('selectedEventId'));
+		selectedEvent = firebase.database().ref('/events/' + selectedEventId);
 		selectedEvent = $firebaseObject(selectedEvent);
 		selectedEvent.$loaded().then(function(){
 			$scope.selectedEvent = selectedEvent;
@@ -73,6 +77,11 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 			return false;
 		else 
 			return true;
+	}
+
+	var getError = function(e) {
+		alert('Error, intente de nuevo');
+		console.log('se guardo mal ', e);
 	}
 
 	$scope.acceptUser = function() {
@@ -115,31 +124,16 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 												$('.row.row-buttons').addClass('hidden');
 												$('.user-detail .validating').addClass('hidden');
 
-  											},function(e){
-												alert('Error, intente de nuevo');
-								        		console.log('se guardo mal ', e);
-  											}
+  											}, getError
 										);
   									});
-  								}, function(e) {
-									alert('Error, intente de nuevo');
-					        		console.log('se guardo mal ', e);
-  								}
+  								}, getError
 							);
-  						}, function(e) {
-							alert('Error, intente de nuevo');
-			        		console.log('se guardo mal ', e);
-  						}
+  						}, getError
 					);
-  				}, function(e) {
-			        alert('Error, intente de nuevo');
-			        console.log('se guardo mal ', e);
-  				}
+  				}, getError
   			);
-        }, function(e) {
-          alert('Error, intente de nuevo');
-          console.log('se guardo mal ', e);
-        }
+        }, getError
       );
 	}
 

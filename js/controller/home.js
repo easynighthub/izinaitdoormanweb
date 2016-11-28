@@ -44,8 +44,7 @@ app.controller('MainController', function($rootScope, $scope, $firebaseObject, $
 		});
 	};
 
-	var ref = firebase.database().ref('/doormans/').child($rootScope.doorman.uid);
-	var doormanData = $firebaseObject(ref);
+	var doormanData = $firebaseObject(firebase.database().ref('/doormans/').child($rootScope.doorman.uid));
 	doormanData.$loaded().then(function(){
 		$('.left-menu-header .name').text(doormanData.name);
 		$('.left-menu-header .email').text(doormanData.email);
