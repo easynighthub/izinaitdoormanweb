@@ -99,7 +99,7 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 		var historyRef = 'history/'+ selectedEvent.id + '/' + $rootScope.doorman.uid + '/' + userId;
 		firebase.database().ref(historyRef).set(userData).then(
         function(s){
-          	var userRef = 'users/' + userId + '/asistProd/'+ $rootScope.doorman.uid + '/' + selectedEvent.id;
+          	var userRef = 'users/' + userId + '/asistProd/'+ selectedEvent.admin + '/' + selectedEvent.id;
           	firebase.database().ref(userRef).set(new Date().getTime()).then(
   				function(s) {
 					var adminRef = 'admins/' + selectedEvent.admin + '/clients/' + userId;
