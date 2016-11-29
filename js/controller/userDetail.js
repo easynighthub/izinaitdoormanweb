@@ -115,8 +115,8 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
   									facturaRequest.$loaded().then(function(){
   										var update = {
   											pay: false,
-  											usersDesc: facturaRequest.usersDesc ? (isDescActive ? facturaRequest.usersDesc + 1 : facturaRequest.usersDesc) : 1,
-  											usersFree: facturaRequest.usersFree ? (!isDescActive ? facturaRequest.usersFree + 1 : facturaRequest.usersFree) : 1
+  											usersDesc: facturaRequest.usersDesc ? (!isDescActive ? facturaRequest.usersDesc + 1 : facturaRequest.usersDesc) : 1,
+  											usersFree: facturaRequest.usersFree ? (isDescActive ? facturaRequest.usersFree + 1 : facturaRequest.usersFree) : 1
   										};
   										firebase.database().ref('admins/' + selectedEvent.admin + '/facturas/' + facturaId).set(update).then(
   											function(s){
