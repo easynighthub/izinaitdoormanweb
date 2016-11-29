@@ -67,7 +67,7 @@ app.controller('UserDetailController', function($rootScope, $scope, $route, $fir
 			$scope.enterPrice = selectedEvent.freemiumHour > new Date().getTime() ?
 			'Entrada en horario gratis.' : 'Porcentaje de descuento: ' + selectedEvent.descOutHour + '%'; 
 			if (user.asistProd)
-				isValidated(user.asistProd[$rootScope.doorman.uid]);
+				isValidated(user.asistProd[selectedEvent.admin]);
 			$('.user-detail .splash-content').addClass('hidden');
 		});
 	});
