@@ -1,72 +1,81 @@
-<div  ng-controller="EventDetailController">
-  <div ui-content-for="title">
-    <span>Detalles del evento</span>
-  </div>
-
-  <div class="scrollable e">
-    <div class="scrollable-content section">
-      <div class="container  mdl-cell mdl-cell--12-col mdl-cell--12-col-phon">
-        <div class="row">
-          <div class="event-details">
-            <div class="image-container">
-              <img src="{{event.image}}">
-            </div>
-            <button ng-click="openScanner()" style="width: 100%!important;"  class="  mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-button  mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                     type="button"> VALIDAR </button>
-            <div class="divider"></div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="title">Desde:</p>
-                <p class="value"><b> <i  class="material-icons " style="vertical-align: middle;">alarm</i> {{event.fromHour | date : 'shortTime'}}</b></p>
-              </div>
-              <div class="col-md-6">
-                <p class="title">Hasta:</p>
-                <p class="value"><b><i  class="material-icons " style="vertical-align: middle;">alarm</i> {{event.toHour | date : 'shortTime'}}</b></p>
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="title">Estilo</p>
-                <p class="value"><b><i  class="material-icons" style="vertical-align: middle;">layers</i> {{event.eventEnvironment}}</b></p>
-                <p class="value"><b><i  class="material-icons " style="vertical-align: middle;">music_note</i> {{event.musicGenres}}</b></p>
-              </div>
-              <div class="col-md-6">
-                <p class="title">Edades admitidas</p>
-                <p class="value"><b>
-                  <i  class="material-icons " style="vertical-align: middle;">people</i>
-                  Hombres +{{event.ageRangeFemale}}</b></p>
-                <p class="value"><b>
-                  <i  class="material-icons " style="vertical-align: middle;">people</i>
-                  Mujeres +{{event.ageRangeMale}}</b></p>
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="title">Gratis hasta las:</p>
-                <p class="value"><b>  <i  class="material-icons" style="vertical-align: middle;">center_focus_strong</i>  {{event.freemiumHour | date : 'shortTime'}}</b></p>
-              </div>
-              <div class="col-md-6">
-                <p class="title">  Descuento después de la hora gratis:</p>
-                <p class="value"><b><i  class="material-icons" style="vertical-align: middle;">center_focus_strong</i> {{event.descOutHour}}%</b></p>
-              </div>
-            </div>
-            <div class="divider"></div>
-            <div class="row vestimenta">
-              <div class="col-md-12">
-                <p class="title">Vestimenta</p>
-                <p class="value"><b>{{event.clothing}}</b></p>
-              </div>
-            </div>
-
-          <!--  <div class="row">
-              <button ng-show="!isOntime" ng-click="openScanner()" class="btn btn-default validate-button">Validar</button>
-            </div> -->
-
-          </div>
-        </div>
-      </div>
+<div ng-controller="EventDetailController">
+    <div ui-content-for="title">
+        <span>Detalles del evento</span>
     </div>
-  </div>
+
+    <div class="scrollable e">
+        <div class="scrollable-content section">
+            <div class="container  mdl-cell mdl-cell--12-col mdl-cell--12-col-phon">
+                <div class="row">
+                    <div class="event-details">
+                        <div class="image-container" style="text-align: center">
+                            <img src="{{event.image}}">
+                        </div>
+                        <button ng-click="openScanner()" style="width: 100%!important;"
+                                class="  mdl-cell mdl-cell--4-col mdl-cell--12-col-phone mdl-button  mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                type="button"> VALIDAR
+                        </button>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="title">Desde:</p>
+                                <p class="value"><b> <i class="material-icons "
+                                                        style="vertical-align: middle;">alarm</i> {{event.fromHour |
+                                    date : 'shortTime'}}</b></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="title">Hasta:</p>
+                                <p class="value"><b><i class="material-icons " style="vertical-align: middle;">alarm</i>
+                                    {{event.toHour | date : 'shortTime'}}</b></p>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="title">Estilo</p>
+                                <p class="value"><b><i class="material-icons" style="vertical-align: middle;">layers</i>
+                                    {{event.eventEnvironment}}</b></p>
+                                <p class="value"><b><i class="material-icons " style="vertical-align: middle;">music_note</i>
+                                    {{event.musicGenres}}</b></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="title">Edades admitidas</p>
+                                <p class="value"><b>
+                                    <i class="material-icons " style="vertical-align: middle;">people</i>
+                                    Hombres +{{event.ageRangeFemale}}</b></p>
+                                <p class="value"><b>
+                                    <i class="material-icons " style="vertical-align: middle;">people</i>
+                                    Mujeres +{{event.ageRangeMale}}</b></p>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="title">Gratis hasta las:</p>
+                                <p class="value"><b> <i class="material-icons" style="vertical-align: middle;">center_focus_strong</i>
+                                    {{event.freemiumHour | date : 'shortTime'}}</b></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="title"> Descuento después de la hora gratis:</p>
+                                <p class="value"><b><i class="material-icons" style="vertical-align: middle;">center_focus_strong</i>
+                                    {{event.descOutHour}}%</b></p>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row vestimenta">
+                            <div class="col-md-12">
+                                <p class="title">Vestimenta</p>
+                                <p class="value"><b>{{event.clothing}}</b></p>
+                            </div>
+                        </div>
+
+                        <!--  <div class="row">
+                            <button ng-show="!isOntime" ng-click="openScanner()" class="btn btn-default validate-button">Validar</button>
+                          </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
